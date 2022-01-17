@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WOW</title>
+	<script>
+		const container = document.querySelector('.container')
+		container.addEventListener('animationend', () => {
+ 		container.classList.remove('active');
+        });
+	</script>
+</head>
+<style>
+* {
+  position: relative;
+  box-sizing: border-box;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Prata&display=swap");
+
+.title {
+  padding-left: 1em;
+  grid-column: 1 / -1;
+  grid-row: 1;
+  font-family: "Prata", serif;
+  font-size: 8vw;
+	color: whitesmoke;
+  width: 100%;
+  z-index: 2;
+  > .title-inner {
+    display: inline-block;
+  }
+}
+
+@keyframes text-clip {
+  from {
+    clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+  }
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+@keyframes outer-left {
+  from {
+    transform: translateX(50%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes inner-left {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+.cafe,
+.mozart {
+  animation: outer-left 1s 1s cubic-bezier(0.5, 0, 0.1, 1) both;
+}
+
+
+.title-inner {
+  display: inline-block;
+  animation: inner-left 1s 1s ease both;
+}
+
+.cafe-inner {
+  display: inline-block;
+  animation: inner-left 1s 1s ease both,
+    text-clip 1s 0s cubic-bezier(0.5, 0, 0.1, 1) both;
+}
+
+.mozart-inner {
+  animation: text-clip 1s 0s cubic-bezier(0.5, 0, 0.1, 1) both;
+}
+
+.title {
+  animation: outer-left 1s 1s ease both;
+}
+
+.cafe {
+  > .cafe-inner {
+    display: inline-block;
+  }
+}
+
+.mozart {
+  display: inline-block;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+body {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+  align-items: center;
+  display: flex;
+  font-family: sans-serif;
+  font-weight: 600;
+  font-size: 26px;
+  justify-content: center;
+  margin: 0;
+}
+.container {
+  align-items: center;
+  background: #000;
+  border-radius: 40px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  display: flex;
+  height: 80px;
+  justify-content: center;
+  position: relative;
+  width: 200px;
+}
+.text {
+  color: white;
+  position: absolute;
+  transition: opacity 300ms;
+  user-select: none;
+  -moz-user-select: none;
+}
+.fingerprint {
+  left: -8px;
+  opacity: 0;
+  position: absolute;
+  stroke: #777;
+  top: -9px;
+  transition: opacity 1ms;
+}
+.fingerprint-active {
+  stroke: #fff;
+}
+.fingerprint-out {
+  opacity: 1;
+}
+.odd {
+  stroke-dasharray: 0px 50px;
+  stroke-dashoffset: 1px;
+  transition: stroke-dasharray 1ms;
+}
+.even {
+  stroke-dasharray: 50px 50px;
+  stroke-dashoffset: -41px;
+  transition: stroke-dashoffset 1ms;
+}
+.ok {
+  opacity: 0;
+}
+.active.container {
+  animation: 6s Container;
+}
+.active .text {
+  opacity: 0;
+  animation: 6s Text forwards;
+}
+.active .fingerprint {
+  opacity: 1;
+  transition: opacity 300ms 200ms;
+}
+.active .fingerprint-base .odd {
+  stroke-dasharray: 50px 50px;
+  transition: stroke-dasharray 800ms 100ms;
+}
+.active .fingerprint-base .even {
+  stroke-dashoffset: 0px;
+  transition: stroke-dashoffset 800ms;
+}
+.active .fingerprint-active .odd {
+  stroke-dasharray: 50px 50px;
+  transition: stroke-dasharray 2000ms 1500ms;
+}
+.active .fingerprint-active .even {
+  stroke-dashoffset: 0px;
+  transition: stroke-dashoffset 2000ms 1300ms;
+}
+.active .fingerprint-out {
+  opacity: 0;
+  transition: opacity 300ms 4100ms;
+}
+.active .ok {
+  opacity: 1;
+  animation: 6s Ok forwards;
+}
+@keyframes Container {
+  0% { width: 200px }
+  6% { width: 80px }
+  71% { transform: scale(1); }
+  75% { transform: scale(1.2); }
+  77% { transform: scale(1); }
+
+  94% { width: 80px }
+  100% { width: 200px }
+}
+@keyframes Text {
+  0% { opacity: 1; transform: scale(1); }
+  6% { opacity: 0; transform: scale(0.5); }
+
+  94% { opacity: 0; transform: scale(0.5); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes Ok {
+  0% { opacity: 0 }
+  70% { opacity: 0; transform: scale(0); }
+  75% { opacity: 1; transform: scale(1.1); }
+  77% { opacity: 1; transform: scale(1); }
+  92% { opacity: 1; transform: scale(1); }
+  96% { opacity: 0; transform: scale(0.5); }
+  100% { opacity: 0 }
+}
+
+footer{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #111;
+}
+footer .bottom{
+  width: 100%;
+  text-align: center;
+  color: #d9d9d9;
+  padding: 0 1px 5px 0;
+}
+footer .bottom a{
+  color: #eb2f06;
+}
+
+.topleft {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+}
+.topright {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700;900&display=swap');
+
+body{
+    width: 100%;
+    overflow: hidden;
+}
+
+nav {
+    width: 100%;
+    height: 60px;
+    padding: 20px 10vw;
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+nav .brand{
+    font-size: 25px;
+    font-weight: 900;
+    color: #fff;
+}
+
+nav .link{
+    position: absolute;
+    width: 25vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    right: -25vw;
+}
+
+nav .link ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    list-style-type: none;
+
+}
+
+nav .link ul li a{
+    padding: 20px;
+    text-transform: capitalize;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.5s;
+    font-size: 20px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+nav .toggle-btn{
+    width: 60px;
+    height: 60px;
+    position: relative;
+    display: block;
+    margin-left: auto;
+}
+
+nav .toggle-btn span{
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 2px;
+    background-color: #fff;
+    transition: .5s;
+}
+
+nav .toggle-btn span:nth-child(1){
+    top: 30%;
+}
+
+nav .toggle-btn span:nth-child(3){
+    top: 70%;
+}
+
+.main-body,
+.header{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    transition: .5s;
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.header .content{
+    position: relative;
+}
+
+.header .content .heading{
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 80px;
+    text-align: center;
+}
+
+
+
+nav .toggle-btn.active span:nth-child(1){
+    top: 80%;
+    left: 40%;
+    transform: rotate(45deg) translate(-50%, -50%);
+}
+
+nav .toggle-btn.active span:nth-child(2){
+    opacity: 0;
+}
+
+nav .toggle-btn.active span:nth-child(3){
+    top: 25%;
+    left: 45%;
+    transform: rotate(-45deg) translate(-50%, -50%);
+}
+
+.header.skew{
+    transform: rotateY(45deg) scale(0.6);
+}
+
+.header.skew::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -25%;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    transform: rotateY(45deg) scale(0.9);
+    z-index: -2;
+}
+
+.header.skew::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -35%;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    transform: rotateY(45deg) scale(0.8);
+    z-index: -2;
+}
+
+nav .link.active{
+    right: 0;
+}
+
+nav .link ul li a:hover{
+    transform: scale(1.3);
+}
+nav
+	{
+		width: 100%;
+		height: 77px;
+		line-height: 48px;
+	}
+
+	nav ul
+	{
+		float:right;
+		margin-left: 35px;
+	}
+
+
+</style>
+<body>
+<img class="topleft" src="data:image/png;base64,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" alt="SASTRA logo">
+
+	<div class="d-flex flex-column justify-content-center align-items-center">
+
+				  <div class="title">
+					<div class="title-inner">
+					  <div class="cafe">
+						<div class="cafe-inner">Intrusion</div>
+					  </div>
+
+					  <div class="mozart">
+						<div class="mozart-inner">Detection</div>
+					  </div>
+		  		</div>
+				</div>
+
+		<script src="https://codepen.io/shshaw/pen/QmZYMG.js"></script>
+
+	</div>
+
+    <nav>
+        <div class="link">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'team' %}">Team</a></li>
+            </ul>
+        </div>
+        <div class="toggle-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <div class="main-body">
+        <div class="header">
+            <div class="content">
+                  <div class="d-flex flex-column justify-content-center w-100 h-100">
+
+
+
+</div>
+              <div class="container" onclick="this.classList.toggle('active')">
+  <span class="text">
+      START<br>
+      Model 1
+  </span>
+
+  <svg class="fingerprint fingerprint-base" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+    <g class="fingerprint-out" fill="none" stroke-width="2" stroke-linecap="round">
+      <path
+            class="odd" d="m 25.117139,57.142857 c 0,0 -1.968558,-7.660465 -0.643619,-13.149003 1.324939,-5.488538 4.659682,-8.994751 4.659682,-8.994751" />
+      <path
+            class="odd" d="m 31.925369,31.477584 c 0,0 2.153609,-2.934998 9.074971,-5.105078 6.921362,-2.17008 11.799844,-0.618718 11.799844,-0.618718" />
+      <path
+            class="odd" d="m 57.131213,26.814448 c 0,0 5.127709,1.731228 9.899495,7.513009 4.771786,5.781781 4.772971,12.109204 4.772971,12.109204" />
+      <path
+            class="odd" d="m 72.334009,50.76769 0.09597,2.298098 -0.09597,2.386485" />
+      <path
+            class="even" d="m 27.849282,62.75 c 0,0 1.286086,-1.279223 1.25,-4.25 -0.03609,-2.970777 -1.606117,-7.675266 -0.625,-12.75 0.981117,-5.074734 4.5,-9.5 4.5,-9.5" />
+      <path
+            class="even" d="m 36.224282,33.625 c 0,0 8.821171,-7.174484 19.3125,-2.8125 10.491329,4.361984 11.870558,14.952665 11.870558,14.952665" />
+      <path
+            class="even" d="m 68.349282,49.75 c 0,0 0.500124,3.82939 0.5625,5.8125 0.06238,1.98311 -0.1875,5.9375 -0.1875,5.9375" />
+      <path
+            class="odd" d="m 31.099282,65.625 c 0,0 1.764703,-4.224042 2,-7.375 0.235297,-3.150958 -1.943873,-9.276886 0.426777,-15.441942 2.370649,-6.165056 8.073223,-7.933058 8.073223,-7.933058" />
+      <path
+            class="odd" d="m 45.849282,33.625 c 0,0 12.805566,-1.968622 17,9.9375 4.194434,11.906122 1.125,24.0625 1.125,24.0625" />
+      <path
+            class="even" d="m 59.099282,70.25 c 0,0 0.870577,-2.956221 1.1875,-4.5625 0.316923,-1.606279 0.5625,-5.0625 0.5625,-5.0625" />
+      <path
+            class="even" d="m 60.901059,56.286612 c 0,0 0.903689,-9.415996 -3.801777,-14.849112 -3.03125,-3.5 -7.329245,-4.723939 -11.867187,-3.8125 -5.523438,1.109375 -7.570313,5.75 -7.570313,5.75" />
+      <path
+            class="even" d="m 34.072577,68.846248 c 0,0 2.274231,-4.165782 2.839205,-9.033748 0.443558,-3.821814 -0.49394,-5.649939 -0.714206,-8.05386 -0.220265,-2.403922 0.21421,-4.63364 0.21421,-4.63364" />
+      <path
+            class="odd" d="m 37.774165,70.831845 c 0,0 2.692139,-6.147592 3.223034,-11.251208 0.530895,-5.103616 -2.18372,-7.95562 -0.153491,-13.647655 2.030229,-5.692035 8.108442,-4.538898 8.108442,-4.538898" />
+      <path
+            class="odd" d="m 54.391174,71.715729 c 0,0 2.359472,-5.427681 2.519068,-16.175068 0.159595,-10.747388 -4.375223,-12.993087 -4.375223,-12.993087" />
+      <path
+            class="even" d="m 49.474282,73.625 c 0,0 3.730297,-8.451831 3.577665,-16.493718 -0.152632,-8.041887 -0.364805,-11.869326 -4.765165,-11.756282 -4.400364,0.113044 -3.875,4.875 -3.875,4.875" />
+      <path
+            class="even" d="m 41.132922,72.334447 c 0,0 2.49775,-5.267079 3.181981,-8.883029 0.68423,-3.61595 0.353553,-9.413359 0.353553,-9.413359" />
+      <path
+            class="odd" d="m 45.161782,73.75 c 0,0 1.534894,-3.679847 2.40625,-6.53125 0.871356,-2.851403 1.28125,-7.15625 1.28125,-7.15625" />
+      <path
+            class="odd" d="m 48.801947,56.125 c 0,0 0.234502,-1.809418 0.109835,-3.375 -0.124667,-1.565582 -0.5625,-3.1875 -0.5625,-3.1875" />
+    </g>
+  </svg>
+
+  <svg class="fingerprint fingerprint-active" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+    <g class="fingerprint-out" fill="none" stroke-width="2" stroke-linecap="round">
+      <path
+            class="odd" d="m 25.117139,57.142857 c 0,0 -1.968558,-7.660465 -0.643619,-13.149003 1.324939,-5.488538 4.659682,-8.994751 4.659682,-8.994751" />
+      <path
+            class="odd" d="m 31.925369,31.477584 c 0,0 2.153609,-2.934998 9.074971,-5.105078 6.921362,-2.17008 11.799844,-0.618718 11.799844,-0.618718" />
+      <path
+            class="odd" d="m 57.131213,26.814448 c 0,0 5.127709,1.731228 9.899495,7.513009 4.771786,5.781781 4.772971,12.109204 4.772971,12.109204" />
+      <path
+            class="odd" d="m 72.334009,50.76769 0.09597,2.298098 -0.09597,2.386485" />
+      <path
+            class="even" d="m 27.849282,62.75 c 0,0 1.286086,-1.279223 1.25,-4.25 -0.03609,-2.970777 -1.606117,-7.675266 -0.625,-12.75 0.981117,-5.074734 4.5,-9.5 4.5,-9.5" />
+      <path
+            class="even" d="m 36.224282,33.625 c 0,0 8.821171,-7.174484 19.3125,-2.8125 10.491329,4.361984 11.870558,14.952665 11.870558,14.952665" />
+      <path
+            class="even" d="m 68.349282,49.75 c 0,0 0.500124,3.82939 0.5625,5.8125 0.06238,1.98311 -0.1875,5.9375 -0.1875,5.9375" />
+      <path
+            class="odd" d="m 31.099282,65.625 c 0,0 1.764703,-4.224042 2,-7.375 0.235297,-3.150958 -1.943873,-9.276886 0.426777,-15.441942 2.370649,-6.165056 8.073223,-7.933058 8.073223,-7.933058" />
+      <path
+            class="odd" d="m 45.849282,33.625 c 0,0 12.805566,-1.968622 17,9.9375 4.194434,11.906122 1.125,24.0625 1.125,24.0625" />
+      <path
+            class="even" d="m 59.099282,70.25 c 0,0 0.870577,-2.956221 1.1875,-4.5625 0.316923,-1.606279 0.5625,-5.0625 0.5625,-5.0625" />
+      <path
+            class="even" d="m 60.901059,56.286612 c 0,0 0.903689,-9.415996 -3.801777,-14.849112 -3.03125,-3.5 -7.329245,-4.723939 -11.867187,-3.8125 -5.523438,1.109375 -7.570313,5.75 -7.570313,5.75" />
+      <path
+            class="even" d="m 34.072577,68.846248 c 0,0 2.274231,-4.165782 2.839205,-9.033748 0.443558,-3.821814 -0.49394,-5.649939 -0.714206,-8.05386 -0.220265,-2.403922 0.21421,-4.63364 0.21421,-4.63364" />
+      <path
+            class="odd" d="m 37.774165,70.831845 c 0,0 2.692139,-6.147592 3.223034,-11.251208 0.530895,-5.103616 -2.18372,-7.95562 -0.153491,-13.647655 2.030229,-5.692035 8.108442,-4.538898 8.108442,-4.538898" />
+      <path
+            class="odd" d="m 54.391174,71.715729 c 0,0 2.359472,-5.427681 2.519068,-16.175068 0.159595,-10.747388 -4.375223,-12.993087 -4.375223,-12.993087" />
+      <path
+            class="even" d="m 49.474282,73.625 c 0,0 3.730297,-8.451831 3.577665,-16.493718 -0.152632,-8.041887 -0.364805,-11.869326 -4.765165,-11.756282 -4.400364,0.113044 -3.875,4.875 -3.875,4.875" />
+      <path
+            class="even" d="m 41.132922,72.334447 c 0,0 2.49775,-5.267079 3.181981,-8.883029 0.68423,-3.61595 0.353553,-9.413359 0.353553,-9.413359" />
+      <path
+            class="odd" d="m 45.161782,73.75 c 0,0 1.534894,-3.679847 2.40625,-6.53125 0.871356,-2.851403 1.28125,-7.15625 1.28125,-7.15625" />
+      <path
+            class="odd" d="m 48.801947,56.125 c 0,0 0.234502,-1.809418 0.109835,-3.375 -0.124667,-1.565582 -0.5625,-3.1875 -0.5625,-3.1875" />
+    </g>
+  </svg>
+ <a href="javascript:delay1('URL')">
+  <svg class="ok" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+      <path d="M34.912 50.75l10.89 10.125L67 36.75" fill="none" stroke="#fff" stroke-width="6"/>
+  </svg>
+
+</div>
+</a>
+<script>
+    function delay1 (URL) {
+    setTimeout( function() { location.href = "{% url 'res1' %}" },5000 );
+}
+</script>
+
+
+&nbsp;&nbsp;&nbsp;
+
+<div class="container" onclick="this.classList.toggle('active')">
+  <span class="text">
+      START<br>
+      Model 2
+  </span>
+
+  <svg class="fingerprint fingerprint-base" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+    <g class="fingerprint-out" fill="none" stroke-width="2" stroke-linecap="round">
+      <path
+            class="odd" d="m 25.117139,57.142857 c 0,0 -1.968558,-7.660465 -0.643619,-13.149003 1.324939,-5.488538 4.659682,-8.994751 4.659682,-8.994751" />
+      <path
+            class="odd" d="m 31.925369,31.477584 c 0,0 2.153609,-2.934998 9.074971,-5.105078 6.921362,-2.17008 11.799844,-0.618718 11.799844,-0.618718" />
+      <path
+            class="odd" d="m 57.131213,26.814448 c 0,0 5.127709,1.731228 9.899495,7.513009 4.771786,5.781781 4.772971,12.109204 4.772971,12.109204" />
+      <path
+            class="odd" d="m 72.334009,50.76769 0.09597,2.298098 -0.09597,2.386485" />
+      <path
+            class="even" d="m 27.849282,62.75 c 0,0 1.286086,-1.279223 1.25,-4.25 -0.03609,-2.970777 -1.606117,-7.675266 -0.625,-12.75 0.981117,-5.074734 4.5,-9.5 4.5,-9.5" />
+      <path
+            class="even" d="m 36.224282,33.625 c 0,0 8.821171,-7.174484 19.3125,-2.8125 10.491329,4.361984 11.870558,14.952665 11.870558,14.952665" />
+      <path
+            class="even" d="m 68.349282,49.75 c 0,0 0.500124,3.82939 0.5625,5.8125 0.06238,1.98311 -0.1875,5.9375 -0.1875,5.9375" />
+      <path
+            class="odd" d="m 31.099282,65.625 c 0,0 1.764703,-4.224042 2,-7.375 0.235297,-3.150958 -1.943873,-9.276886 0.426777,-15.441942 2.370649,-6.165056 8.073223,-7.933058 8.073223,-7.933058" />
+      <path
+            class="odd" d="m 45.849282,33.625 c 0,0 12.805566,-1.968622 17,9.9375 4.194434,11.906122 1.125,24.0625 1.125,24.0625" />
+      <path
+            class="even" d="m 59.099282,70.25 c 0,0 0.870577,-2.956221 1.1875,-4.5625 0.316923,-1.606279 0.5625,-5.0625 0.5625,-5.0625" />
+      <path
+            class="even" d="m 60.901059,56.286612 c 0,0 0.903689,-9.415996 -3.801777,-14.849112 -3.03125,-3.5 -7.329245,-4.723939 -11.867187,-3.8125 -5.523438,1.109375 -7.570313,5.75 -7.570313,5.75" />
+      <path
+            class="even" d="m 34.072577,68.846248 c 0,0 2.274231,-4.165782 2.839205,-9.033748 0.443558,-3.821814 -0.49394,-5.649939 -0.714206,-8.05386 -0.220265,-2.403922 0.21421,-4.63364 0.21421,-4.63364" />
+      <path
+            class="odd" d="m 37.774165,70.831845 c 0,0 2.692139,-6.147592 3.223034,-11.251208 0.530895,-5.103616 -2.18372,-7.95562 -0.153491,-13.647655 2.030229,-5.692035 8.108442,-4.538898 8.108442,-4.538898" />
+      <path
+            class="odd" d="m 54.391174,71.715729 c 0,0 2.359472,-5.427681 2.519068,-16.175068 0.159595,-10.747388 -4.375223,-12.993087 -4.375223,-12.993087" />
+      <path
+            class="even" d="m 49.474282,73.625 c 0,0 3.730297,-8.451831 3.577665,-16.493718 -0.152632,-8.041887 -0.364805,-11.869326 -4.765165,-11.756282 -4.400364,0.113044 -3.875,4.875 -3.875,4.875" />
+      <path
+            class="even" d="m 41.132922,72.334447 c 0,0 2.49775,-5.267079 3.181981,-8.883029 0.68423,-3.61595 0.353553,-9.413359 0.353553,-9.413359" />
+      <path
+            class="odd" d="m 45.161782,73.75 c 0,0 1.534894,-3.679847 2.40625,-6.53125 0.871356,-2.851403 1.28125,-7.15625 1.28125,-7.15625" />
+      <path
+            class="odd" d="m 48.801947,56.125 c 0,0 0.234502,-1.809418 0.109835,-3.375 -0.124667,-1.565582 -0.5625,-3.1875 -0.5625,-3.1875" />
+    </g>
+  </svg>
+
+  <svg class="fingerprint fingerprint-active" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+    <g class="fingerprint-out" fill="none" stroke-width="2" stroke-linecap="round">
+      <path
+            class="odd" d="m 25.117139,57.142857 c 0,0 -1.968558,-7.660465 -0.643619,-13.149003 1.324939,-5.488538 4.659682,-8.994751 4.659682,-8.994751" />
+      <path
+            class="odd" d="m 31.925369,31.477584 c 0,0 2.153609,-2.934998 9.074971,-5.105078 6.921362,-2.17008 11.799844,-0.618718 11.799844,-0.618718" />
+      <path
+            class="odd" d="m 57.131213,26.814448 c 0,0 5.127709,1.731228 9.899495,7.513009 4.771786,5.781781 4.772971,12.109204 4.772971,12.109204" />
+      <path
+            class="odd" d="m 72.334009,50.76769 0.09597,2.298098 -0.09597,2.386485" />
+      <path
+            class="even" d="m 27.849282,62.75 c 0,0 1.286086,-1.279223 1.25,-4.25 -0.03609,-2.970777 -1.606117,-7.675266 -0.625,-12.75 0.981117,-5.074734 4.5,-9.5 4.5,-9.5" />
+      <path
+            class="even" d="m 36.224282,33.625 c 0,0 8.821171,-7.174484 19.3125,-2.8125 10.491329,4.361984 11.870558,14.952665 11.870558,14.952665" />
+      <path
+            class="even" d="m 68.349282,49.75 c 0,0 0.500124,3.82939 0.5625,5.8125 0.06238,1.98311 -0.1875,5.9375 -0.1875,5.9375" />
+      <path
+            class="odd" d="m 31.099282,65.625 c 0,0 1.764703,-4.224042 2,-7.375 0.235297,-3.150958 -1.943873,-9.276886 0.426777,-15.441942 2.370649,-6.165056 8.073223,-7.933058 8.073223,-7.933058" />
+      <path
+            class="odd" d="m 45.849282,33.625 c 0,0 12.805566,-1.968622 17,9.9375 4.194434,11.906122 1.125,24.0625 1.125,24.0625" />
+      <path
+            class="even" d="m 59.099282,70.25 c 0,0 0.870577,-2.956221 1.1875,-4.5625 0.316923,-1.606279 0.5625,-5.0625 0.5625,-5.0625" />
+      <path
+            class="even" d="m 60.901059,56.286612 c 0,0 0.903689,-9.415996 -3.801777,-14.849112 -3.03125,-3.5 -7.329245,-4.723939 -11.867187,-3.8125 -5.523438,1.109375 -7.570313,5.75 -7.570313,5.75" />
+      <path
+            class="even" d="m 34.072577,68.846248 c 0,0 2.274231,-4.165782 2.839205,-9.033748 0.443558,-3.821814 -0.49394,-5.649939 -0.714206,-8.05386 -0.220265,-2.403922 0.21421,-4.63364 0.21421,-4.63364" />
+      <path
+            class="odd" d="m 37.774165,70.831845 c 0,0 2.692139,-6.147592 3.223034,-11.251208 0.530895,-5.103616 -2.18372,-7.95562 -0.153491,-13.647655 2.030229,-5.692035 8.108442,-4.538898 8.108442,-4.538898" />
+      <path
+            class="odd" d="m 54.391174,71.715729 c 0,0 2.359472,-5.427681 2.519068,-16.175068 0.159595,-10.747388 -4.375223,-12.993087 -4.375223,-12.993087" />
+      <path
+            class="even" d="m 49.474282,73.625 c 0,0 3.730297,-8.451831 3.577665,-16.493718 -0.152632,-8.041887 -0.364805,-11.869326 -4.765165,-11.756282 -4.400364,0.113044 -3.875,4.875 -3.875,4.875" />
+      <path
+            class="even" d="m 41.132922,72.334447 c 0,0 2.49775,-5.267079 3.181981,-8.883029 0.68423,-3.61595 0.353553,-9.413359 0.353553,-9.413359" />
+      <path
+            class="odd" d="m 45.161782,73.75 c 0,0 1.534894,-3.679847 2.40625,-6.53125 0.871356,-2.851403 1.28125,-7.15625 1.28125,-7.15625" />
+      <path
+            class="odd" d="m 48.801947,56.125 c 0,0 0.234502,-1.809418 0.109835,-3.375 -0.124667,-1.565582 -0.5625,-3.1875 -0.5625,-3.1875" />
+    </g>
+  </svg>
+   <a href="javascript:delay2('URL')">
+  <svg class="ok" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+      <path d="M34.912 50.75l10.89 10.125L67 36.75" fill="none" stroke="#fff" stroke-width="6"/>
+  </svg>
+
+</div>
+</a>
+<script>
+    function delay2 (URL) {
+    setTimeout( function() { location.href = "{% url 'res2' %}" },5000 );
+}
+</script>
+
+&nbsp;&nbsp;&nbsp;
+
+<div class="container" onclick="this.classList.toggle('active')">
+  <span class="text">
+      START<br>
+      Model 3
+  </span>
+  <svg class="fingerprint fingerprint-base" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+    <g class="fingerprint-out" fill="none" stroke-width="2" stroke-linecap="round">
+      <path
+            class="odd" d="m 25.117139,57.142857 c 0,0 -1.968558,-7.660465 -0.643619,-13.149003 1.324939,-5.488538 4.659682,-8.994751 4.659682,-8.994751" />
+      <path
+            class="odd" d="m 31.925369,31.477584 c 0,0 2.153609,-2.934998 9.074971,-5.105078 6.921362,-2.17008 11.799844,-0.618718 11.799844,-0.618718" />
+      <path
+            class="odd" d="m 57.131213,26.814448 c 0,0 5.127709,1.731228 9.899495,7.513009 4.771786,5.781781 4.772971,12.109204 4.772971,12.109204" />
+      <path
+            class="odd" d="m 72.334009,50.76769 0.09597,2.298098 -0.09597,2.386485" />
+      <path
+            class="even" d="m 27.849282,62.75 c 0,0 1.286086,-1.279223 1.25,-4.25 -0.03609,-2.970777 -1.606117,-7.675266 -0.625,-12.75 0.981117,-5.074734 4.5,-9.5 4.5,-9.5" />
+      <path
+            class="even" d="m 36.224282,33.625 c 0,0 8.821171,-7.174484 19.3125,-2.8125 10.491329,4.361984 11.870558,14.952665 11.870558,14.952665" />
+      <path
+            class="even" d="m 68.349282,49.75 c 0,0 0.500124,3.82939 0.5625,5.8125 0.06238,1.98311 -0.1875,5.9375 -0.1875,5.9375" />
+      <path
+            class="odd" d="m 31.099282,65.625 c 0,0 1.764703,-4.224042 2,-7.375 0.235297,-3.150958 -1.943873,-9.276886 0.426777,-15.441942 2.370649,-6.165056 8.073223,-7.933058 8.073223,-7.933058" />
+      <path
+            class="odd" d="m 45.849282,33.625 c 0,0 12.805566,-1.968622 17,9.9375 4.194434,11.906122 1.125,24.0625 1.125,24.0625" />
+      <path
+            class="even" d="m 59.099282,70.25 c 0,0 0.870577,-2.956221 1.1875,-4.5625 0.316923,-1.606279 0.5625,-5.0625 0.5625,-5.0625" />
+      <path
+            class="even" d="m 60.901059,56.286612 c 0,0 0.903689,-9.415996 -3.801777,-14.849112 -3.03125,-3.5 -7.329245,-4.723939 -11.867187,-3.8125 -5.523438,1.109375 -7.570313,5.75 -7.570313,5.75" />
+      <path
+            class="even" d="m 34.072577,68.846248 c 0,0 2.274231,-4.165782 2.839205,-9.033748 0.443558,-3.821814 -0.49394,-5.649939 -0.714206,-8.05386 -0.220265,-2.403922 0.21421,-4.63364 0.21421,-4.63364" />
+      <path
+            class="odd" d="m 37.774165,70.831845 c 0,0 2.692139,-6.147592 3.223034,-11.251208 0.530895,-5.103616 -2.18372,-7.95562 -0.153491,-13.647655 2.030229,-5.692035 8.108442,-4.538898 8.108442,-4.538898" />
+      <path
+            class="odd" d="m 54.391174,71.715729 c 0,0 2.359472,-5.427681 2.519068,-16.175068 0.159595,-10.747388 -4.375223,-12.993087 -4.375223,-12.993087" />
+      <path
+            class="even" d="m 49.474282,73.625 c 0,0 3.730297,-8.451831 3.577665,-16.493718 -0.152632,-8.041887 -0.364805,-11.869326 -4.765165,-11.756282 -4.400364,0.113044 -3.875,4.875 -3.875,4.875" />
+      <path
+            class="even" d="m 41.132922,72.334447 c 0,0 2.49775,-5.267079 3.181981,-8.883029 0.68423,-3.61595 0.353553,-9.413359 0.353553,-9.413359" />
+      <path
+            class="odd" d="m 45.161782,73.75 c 0,0 1.534894,-3.679847 2.40625,-6.53125 0.871356,-2.851403 1.28125,-7.15625 1.28125,-7.15625" />
+      <path
+            class="odd" d="m 48.801947,56.125 c 0,0 0.234502,-1.809418 0.109835,-3.375 -0.124667,-1.565582 -0.5625,-3.1875 -0.5625,-3.1875" />
+    </g>
+  </svg>
+
+  <svg class="fingerprint fingerprint-active" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+    <g class="fingerprint-out" fill="none" stroke-width="2" stroke-linecap="round">
+      <path
+            class="odd" d="m 25.117139,57.142857 c 0,0 -1.968558,-7.660465 -0.643619,-13.149003 1.324939,-5.488538 4.659682,-8.994751 4.659682,-8.994751" />
+      <path
+            class="odd" d="m 31.925369,31.477584 c 0,0 2.153609,-2.934998 9.074971,-5.105078 6.921362,-2.17008 11.799844,-0.618718 11.799844,-0.618718" />
+      <path
+            class="odd" d="m 57.131213,26.814448 c 0,0 5.127709,1.731228 9.899495,7.513009 4.771786,5.781781 4.772971,12.109204 4.772971,12.109204" />
+      <path
+            class="odd" d="m 72.334009,50.76769 0.09597,2.298098 -0.09597,2.386485" />
+      <path
+            class="even" d="m 27.849282,62.75 c 0,0 1.286086,-1.279223 1.25,-4.25 -0.03609,-2.970777 -1.606117,-7.675266 -0.625,-12.75 0.981117,-5.074734 4.5,-9.5 4.5,-9.5" />
+      <path
+            class="even" d="m 36.224282,33.625 c 0,0 8.821171,-7.174484 19.3125,-2.8125 10.491329,4.361984 11.870558,14.952665 11.870558,14.952665" />
+      <path
+            class="even" d="m 68.349282,49.75 c 0,0 0.500124,3.82939 0.5625,5.8125 0.06238,1.98311 -0.1875,5.9375 -0.1875,5.9375" />
+      <path
+            class="odd" d="m 31.099282,65.625 c 0,0 1.764703,-4.224042 2,-7.375 0.235297,-3.150958 -1.943873,-9.276886 0.426777,-15.441942 2.370649,-6.165056 8.073223,-7.933058 8.073223,-7.933058" />
+      <path
+            class="odd" d="m 45.849282,33.625 c 0,0 12.805566,-1.968622 17,9.9375 4.194434,11.906122 1.125,24.0625 1.125,24.0625" />
+      <path
+            class="even" d="m 59.099282,70.25 c 0,0 0.870577,-2.956221 1.1875,-4.5625 0.316923,-1.606279 0.5625,-5.0625 0.5625,-5.0625" />
+      <path
+            class="even" d="m 60.901059,56.286612 c 0,0 0.903689,-9.415996 -3.801777,-14.849112 -3.03125,-3.5 -7.329245,-4.723939 -11.867187,-3.8125 -5.523438,1.109375 -7.570313,5.75 -7.570313,5.75" />
+      <path
+            class="even" d="m 34.072577,68.846248 c 0,0 2.274231,-4.165782 2.839205,-9.033748 0.443558,-3.821814 -0.49394,-5.649939 -0.714206,-8.05386 -0.220265,-2.403922 0.21421,-4.63364 0.21421,-4.63364" />
+      <path
+            class="odd" d="m 37.774165,70.831845 c 0,0 2.692139,-6.147592 3.223034,-11.251208 0.530895,-5.103616 -2.18372,-7.95562 -0.153491,-13.647655 2.030229,-5.692035 8.108442,-4.538898 8.108442,-4.538898" />
+      <path
+            class="odd" d="m 54.391174,71.715729 c 0,0 2.359472,-5.427681 2.519068,-16.175068 0.159595,-10.747388 -4.375223,-12.993087 -4.375223,-12.993087" />
+      <path
+            class="even" d="m 49.474282,73.625 c 0,0 3.730297,-8.451831 3.577665,-16.493718 -0.152632,-8.041887 -0.364805,-11.869326 -4.765165,-11.756282 -4.400364,0.113044 -3.875,4.875 -3.875,4.875" />
+      <path
+            class="even" d="m 41.132922,72.334447 c 0,0 2.49775,-5.267079 3.181981,-8.883029 0.68423,-3.61595 0.353553,-9.413359 0.353553,-9.413359" />
+      <path
+            class="odd" d="m 45.161782,73.75 c 0,0 1.534894,-3.679847 2.40625,-6.53125 0.871356,-2.851403 1.28125,-7.15625 1.28125,-7.15625" />
+      <path
+            class="odd" d="m 48.801947,56.125 c 0,0 0.234502,-1.809418 0.109835,-3.375 -0.124667,-1.565582 -0.5625,-3.1875 -0.5625,-3.1875" />
+    </g>
+  </svg>
+    <a href="javascript:delay3('URL')">
+  <svg class="ok" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+      <path d="M34.912 50.75l10.89 10.125L67 36.75" fill="none" stroke="#fff" stroke-width="6"/>
+  </svg>
+
+</div>
+</a>
+<script>
+    function delay3 (URL) {
+    setTimeout( function() {location.href = "{% url 'res3' %}" },5000 );
+}
+</script>
+
+
+&nbsp;&nbsp;&nbsp;
+
+
+<div class="container" onclick="this.classList.toggle('active')">
+  <span class="text">
+      START<br>
+      Model 4
+  </span>
+  <svg class="fingerprint fingerprint-base" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+    <g class="fingerprint-out" fill="none" stroke-width="2" stroke-linecap="round">
+      <path
+            class="odd" d="m 25.117139,57.142857 c 0,0 -1.968558,-7.660465 -0.643619,-13.149003 1.324939,-5.488538 4.659682,-8.994751 4.659682,-8.994751" />
+      <path
+            class="odd" d="m 31.925369,31.477584 c 0,0 2.153609,-2.934998 9.074971,-5.105078 6.921362,-2.17008 11.799844,-0.618718 11.799844,-0.618718" />
+      <path
+            class="odd" d="m 57.131213,26.814448 c 0,0 5.127709,1.731228 9.899495,7.513009 4.771786,5.781781 4.772971,12.109204 4.772971,12.109204" />
+      <path
+            class="odd" d="m 72.334009,50.76769 0.09597,2.298098 -0.09597,2.386485" />
+      <path
+            class="even" d="m 27.849282,62.75 c 0,0 1.286086,-1.279223 1.25,-4.25 -0.03609,-2.970777 -1.606117,-7.675266 -0.625,-12.75 0.981117,-5.074734 4.5,-9.5 4.5,-9.5" />
+      <path
+            class="even" d="m 36.224282,33.625 c 0,0 8.821171,-7.174484 19.3125,-2.8125 10.491329,4.361984 11.870558,14.952665 11.870558,14.952665" />
+      <path
+            class="even" d="m 68.349282,49.75 c 0,0 0.500124,3.82939 0.5625,5.8125 0.06238,1.98311 -0.1875,5.9375 -0.1875,5.9375" />
+      <path
+            class="odd" d="m 31.099282,65.625 c 0,0 1.764703,-4.224042 2,-7.375 0.235297,-3.150958 -1.943873,-9.276886 0.426777,-15.441942 2.370649,-6.165056 8.073223,-7.933058 8.073223,-7.933058" />
+      <path
+            class="odd" d="m 45.849282,33.625 c 0,0 12.805566,-1.968622 17,9.9375 4.194434,11.906122 1.125,24.0625 1.125,24.0625" />
+      <path
+            class="even" d="m 59.099282,70.25 c 0,0 0.870577,-2.956221 1.1875,-4.5625 0.316923,-1.606279 0.5625,-5.0625 0.5625,-5.0625" />
+      <path
+            class="even" d="m 60.901059,56.286612 c 0,0 0.903689,-9.415996 -3.801777,-14.849112 -3.03125,-3.5 -7.329245,-4.723939 -11.867187,-3.8125 -5.523438,1.109375 -7.570313,5.75 -7.570313,5.75" />
+      <path
+            class="even" d="m 34.072577,68.846248 c 0,0 2.274231,-4.165782 2.839205,-9.033748 0.443558,-3.821814 -0.49394,-5.649939 -0.714206,-8.05386 -0.220265,-2.403922 0.21421,-4.63364 0.21421,-4.63364" />
+      <path
+            class="odd" d="m 37.774165,70.831845 c 0,0 2.692139,-6.147592 3.223034,-11.251208 0.530895,-5.103616 -2.18372,-7.95562 -0.153491,-13.647655 2.030229,-5.692035 8.108442,-4.538898 8.108442,-4.538898" />
+      <path
+            class="odd" d="m 54.391174,71.715729 c 0,0 2.359472,-5.427681 2.519068,-16.175068 0.159595,-10.747388 -4.375223,-12.993087 -4.375223,-12.993087" />
+      <path
+            class="even" d="m 49.474282,73.625 c 0,0 3.730297,-8.451831 3.577665,-16.493718 -0.152632,-8.041887 -0.364805,-11.869326 -4.765165,-11.756282 -4.400364,0.113044 -3.875,4.875 -3.875,4.875" />
+      <path
+            class="even" d="m 41.132922,72.334447 c 0,0 2.49775,-5.267079 3.181981,-8.883029 0.68423,-3.61595 0.353553,-9.413359 0.353553,-9.413359" />
+      <path
+            class="odd" d="m 45.161782,73.75 c 0,0 1.534894,-3.679847 2.40625,-6.53125 0.871356,-2.851403 1.28125,-7.15625 1.28125,-7.15625" />
+      <path
+            class="odd" d="m 48.801947,56.125 c 0,0 0.234502,-1.809418 0.109835,-3.375 -0.124667,-1.565582 -0.5625,-3.1875 -0.5625,-3.1875" />
+    </g>
+  </svg>
+
+  <svg class="fingerprint fingerprint-active" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+    <g class="fingerprint-out" fill="none" stroke-width="2" stroke-linecap="round">
+      <path
+            class="odd" d="m 25.117139,57.142857 c 0,0 -1.968558,-7.660465 -0.643619,-13.149003 1.324939,-5.488538 4.659682,-8.994751 4.659682,-8.994751" />
+      <path
+            class="odd" d="m 31.925369,31.477584 c 0,0 2.153609,-2.934998 9.074971,-5.105078 6.921362,-2.17008 11.799844,-0.618718 11.799844,-0.618718" />
+      <path
+            class="odd" d="m 57.131213,26.814448 c 0,0 5.127709,1.731228 9.899495,7.513009 4.771786,5.781781 4.772971,12.109204 4.772971,12.109204" />
+      <path
+            class="odd" d="m 72.334009,50.76769 0.09597,2.298098 -0.09597,2.386485" />
+      <path
+            class="even" d="m 27.849282,62.75 c 0,0 1.286086,-1.279223 1.25,-4.25 -0.03609,-2.970777 -1.606117,-7.675266 -0.625,-12.75 0.981117,-5.074734 4.5,-9.5 4.5,-9.5" />
+      <path
+            class="even" d="m 36.224282,33.625 c 0,0 8.821171,-7.174484 19.3125,-2.8125 10.491329,4.361984 11.870558,14.952665 11.870558,14.952665" />
+      <path
+            class="even" d="m 68.349282,49.75 c 0,0 0.500124,3.82939 0.5625,5.8125 0.06238,1.98311 -0.1875,5.9375 -0.1875,5.9375" />
+      <path
+            class="odd" d="m 31.099282,65.625 c 0,0 1.764703,-4.224042 2,-7.375 0.235297,-3.150958 -1.943873,-9.276886 0.426777,-15.441942 2.370649,-6.165056 8.073223,-7.933058 8.073223,-7.933058" />
+      <path
+            class="odd" d="m 45.849282,33.625 c 0,0 12.805566,-1.968622 17,9.9375 4.194434,11.906122 1.125,24.0625 1.125,24.0625" />
+      <path
+            class="even" d="m 59.099282,70.25 c 0,0 0.870577,-2.956221 1.1875,-4.5625 0.316923,-1.606279 0.5625,-5.0625 0.5625,-5.0625" />
+      <path
+            class="even" d="m 60.901059,56.286612 c 0,0 0.903689,-9.415996 -3.801777,-14.849112 -3.03125,-3.5 -7.329245,-4.723939 -11.867187,-3.8125 -5.523438,1.109375 -7.570313,5.75 -7.570313,5.75" />
+      <path
+            class="even" d="m 34.072577,68.846248 c 0,0 2.274231,-4.165782 2.839205,-9.033748 0.443558,-3.821814 -0.49394,-5.649939 -0.714206,-8.05386 -0.220265,-2.403922 0.21421,-4.63364 0.21421,-4.63364" />
+      <path
+            class="odd" d="m 37.774165,70.831845 c 0,0 2.692139,-6.147592 3.223034,-11.251208 0.530895,-5.103616 -2.18372,-7.95562 -0.153491,-13.647655 2.030229,-5.692035 8.108442,-4.538898 8.108442,-4.538898" />
+      <path
+            class="odd" d="m 54.391174,71.715729 c 0,0 2.359472,-5.427681 2.519068,-16.175068 0.159595,-10.747388 -4.375223,-12.993087 -4.375223,-12.993087" />
+      <path
+            class="even" d="m 49.474282,73.625 c 0,0 3.730297,-8.451831 3.577665,-16.493718 -0.152632,-8.041887 -0.364805,-11.869326 -4.765165,-11.756282 -4.400364,0.113044 -3.875,4.875 -3.875,4.875" />
+      <path
+            class="even" d="m 41.132922,72.334447 c 0,0 2.49775,-5.267079 3.181981,-8.883029 0.68423,-3.61595 0.353553,-9.413359 0.353553,-9.413359" />
+      <path
+            class="odd" d="m 45.161782,73.75 c 0,0 1.534894,-3.679847 2.40625,-6.53125 0.871356,-2.851403 1.28125,-7.15625 1.28125,-7.15625" />
+      <path
+            class="odd" d="m 48.801947,56.125 c 0,0 0.234502,-1.809418 0.109835,-3.375 -0.124667,-1.565582 -0.5625,-3.1875 -0.5625,-3.1875" />
+    </g>
+  </svg>
+    <a href="javascript:delay4('URL')">
+  <svg class="ok" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+      <path d="M34.912 50.75l10.89 10.125L67 36.75" fill="none" stroke="#fff" stroke-width="6"/>
+  </svg>
+
+</div>
+</a>
+<script>
+    function delay4 (URL) {
+    setTimeout( function() { location.href = "{% url 'res4' %}" },5000 );
+}
+</script>
+
+<div class="container" onclick="this.classList.toggle('active')">
+  <span class="text">
+      STACK
+  </span>
+  <svg class="fingerprint fingerprint-base" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+    <g class="fingerprint-out" fill="none" stroke-width="2" stroke-linecap="round">
+      <path
+            class="odd" d="m 25.117139,57.142857 c 0,0 -1.968558,-7.660465 -0.643619,-13.149003 1.324939,-5.488538 4.659682,-8.994751 4.659682,-8.994751" />
+      <path
+            class="odd" d="m 31.925369,31.477584 c 0,0 2.153609,-2.934998 9.074971,-5.105078 6.921362,-2.17008 11.799844,-0.618718 11.799844,-0.618718" />
+      <path
+            class="odd" d="m 57.131213,26.814448 c 0,0 5.127709,1.731228 9.899495,7.513009 4.771786,5.781781 4.772971,12.109204 4.772971,12.109204" />
+      <path
+            class="odd" d="m 72.334009,50.76769 0.09597,2.298098 -0.09597,2.386485" />
+      <path
+            class="even" d="m 27.849282,62.75 c 0,0 1.286086,-1.279223 1.25,-4.25 -0.03609,-2.970777 -1.606117,-7.675266 -0.625,-12.75 0.981117,-5.074734 4.5,-9.5 4.5,-9.5" />
+      <path
+            class="even" d="m 36.224282,33.625 c 0,0 8.821171,-7.174484 19.3125,-2.8125 10.491329,4.361984 11.870558,14.952665 11.870558,14.952665" />
+      <path
+            class="even" d="m 68.349282,49.75 c 0,0 0.500124,3.82939 0.5625,5.8125 0.06238,1.98311 -0.1875,5.9375 -0.1875,5.9375" />
+      <path
+            class="odd" d="m 31.099282,65.625 c 0,0 1.764703,-4.224042 2,-7.375 0.235297,-3.150958 -1.943873,-9.276886 0.426777,-15.441942 2.370649,-6.165056 8.073223,-7.933058 8.073223,-7.933058" />
+      <path
+            class="odd" d="m 45.849282,33.625 c 0,0 12.805566,-1.968622 17,9.9375 4.194434,11.906122 1.125,24.0625 1.125,24.0625" />
+      <path
+            class="even" d="m 59.099282,70.25 c 0,0 0.870577,-2.956221 1.1875,-4.5625 0.316923,-1.606279 0.5625,-5.0625 0.5625,-5.0625" />
+      <path
+            class="even" d="m 60.901059,56.286612 c 0,0 0.903689,-9.415996 -3.801777,-14.849112 -3.03125,-3.5 -7.329245,-4.723939 -11.867187,-3.8125 -5.523438,1.109375 -7.570313,5.75 -7.570313,5.75" />
+      <path
+            class="even" d="m 34.072577,68.846248 c 0,0 2.274231,-4.165782 2.839205,-9.033748 0.443558,-3.821814 -0.49394,-5.649939 -0.714206,-8.05386 -0.220265,-2.403922 0.21421,-4.63364 0.21421,-4.63364" />
+      <path
+            class="odd" d="m 37.774165,70.831845 c 0,0 2.692139,-6.147592 3.223034,-11.251208 0.530895,-5.103616 -2.18372,-7.95562 -0.153491,-13.647655 2.030229,-5.692035 8.108442,-4.538898 8.108442,-4.538898" />
+      <path
+            class="odd" d="m 54.391174,71.715729 c 0,0 2.359472,-5.427681 2.519068,-16.175068 0.159595,-10.747388 -4.375223,-12.993087 -4.375223,-12.993087" />
+      <path
+            class="even" d="m 49.474282,73.625 c 0,0 3.730297,-8.451831 3.577665,-16.493718 -0.152632,-8.041887 -0.364805,-11.869326 -4.765165,-11.756282 -4.400364,0.113044 -3.875,4.875 -3.875,4.875" />
+      <path
+            class="even" d="m 41.132922,72.334447 c 0,0 2.49775,-5.267079 3.181981,-8.883029 0.68423,-3.61595 0.353553,-9.413359 0.353553,-9.413359" />
+      <path
+            class="odd" d="m 45.161782,73.75 c 0,0 1.534894,-3.679847 2.40625,-6.53125 0.871356,-2.851403 1.28125,-7.15625 1.28125,-7.15625" />
+      <path
+            class="odd" d="m 48.801947,56.125 c 0,0 0.234502,-1.809418 0.109835,-3.375 -0.124667,-1.565582 -0.5625,-3.1875 -0.5625,-3.1875" />
+    </g>
+  </svg>
+
+  <svg class="fingerprint fingerprint-active" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+    <g class="fingerprint-out" fill="none" stroke-width="2" stroke-linecap="round">
+      <path
+            class="odd" d="m 25.117139,57.142857 c 0,0 -1.968558,-7.660465 -0.643619,-13.149003 1.324939,-5.488538 4.659682,-8.994751 4.659682,-8.994751" />
+      <path
+            class="odd" d="m 31.925369,31.477584 c 0,0 2.153609,-2.934998 9.074971,-5.105078 6.921362,-2.17008 11.799844,-0.618718 11.799844,-0.618718" />
+      <path
+            class="odd" d="m 57.131213,26.814448 c 0,0 5.127709,1.731228 9.899495,7.513009 4.771786,5.781781 4.772971,12.109204 4.772971,12.109204" />
+      <path
+            class="odd" d="m 72.334009,50.76769 0.09597,2.298098 -0.09597,2.386485" />
+      <path
+            class="even" d="m 27.849282,62.75 c 0,0 1.286086,-1.279223 1.25,-4.25 -0.03609,-2.970777 -1.606117,-7.675266 -0.625,-12.75 0.981117,-5.074734 4.5,-9.5 4.5,-9.5" />
+      <path
+            class="even" d="m 36.224282,33.625 c 0,0 8.821171,-7.174484 19.3125,-2.8125 10.491329,4.361984 11.870558,14.952665 11.870558,14.952665" />
+      <path
+            class="even" d="m 68.349282,49.75 c 0,0 0.500124,3.82939 0.5625,5.8125 0.06238,1.98311 -0.1875,5.9375 -0.1875,5.9375" />
+      <path
+            class="odd" d="m 31.099282,65.625 c 0,0 1.764703,-4.224042 2,-7.375 0.235297,-3.150958 -1.943873,-9.276886 0.426777,-15.441942 2.370649,-6.165056 8.073223,-7.933058 8.073223,-7.933058" />
+      <path
+            class="odd" d="m 45.849282,33.625 c 0,0 12.805566,-1.968622 17,9.9375 4.194434,11.906122 1.125,24.0625 1.125,24.0625" />
+      <path
+            class="even" d="m 59.099282,70.25 c 0,0 0.870577,-2.956221 1.1875,-4.5625 0.316923,-1.606279 0.5625,-5.0625 0.5625,-5.0625" />
+      <path
+            class="even" d="m 60.901059,56.286612 c 0,0 0.903689,-9.415996 -3.801777,-14.849112 -3.03125,-3.5 -7.329245,-4.723939 -11.867187,-3.8125 -5.523438,1.109375 -7.570313,5.75 -7.570313,5.75" />
+      <path
+            class="even" d="m 34.072577,68.846248 c 0,0 2.274231,-4.165782 2.839205,-9.033748 0.443558,-3.821814 -0.49394,-5.649939 -0.714206,-8.05386 -0.220265,-2.403922 0.21421,-4.63364 0.21421,-4.63364" />
+      <path
+            class="odd" d="m 37.774165,70.831845 c 0,0 2.692139,-6.147592 3.223034,-11.251208 0.530895,-5.103616 -2.18372,-7.95562 -0.153491,-13.647655 2.030229,-5.692035 8.108442,-4.538898 8.108442,-4.538898" />
+      <path
+            class="odd" d="m 54.391174,71.715729 c 0,0 2.359472,-5.427681 2.519068,-16.175068 0.159595,-10.747388 -4.375223,-12.993087 -4.375223,-12.993087" />
+      <path
+            class="even" d="m 49.474282,73.625 c 0,0 3.730297,-8.451831 3.577665,-16.493718 -0.152632,-8.041887 -0.364805,-11.869326 -4.765165,-11.756282 -4.400364,0.113044 -3.875,4.875 -3.875,4.875" />
+      <path
+            class="even" d="m 41.132922,72.334447 c 0,0 2.49775,-5.267079 3.181981,-8.883029 0.68423,-3.61595 0.353553,-9.413359 0.353553,-9.413359" />
+      <path
+            class="odd" d="m 45.161782,73.75 c 0,0 1.534894,-3.679847 2.40625,-6.53125 0.871356,-2.851403 1.28125,-7.15625 1.28125,-7.15625" />
+      <path
+            class="odd" d="m 48.801947,56.125 c 0,0 0.234502,-1.809418 0.109835,-3.375 -0.124667,-1.565582 -0.5625,-3.1875 -0.5625,-3.1875" />
+    </g>
+  </svg>
+    <a href="javascript:delay5('URL')">
+  <svg class="ok" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+      <path d="M34.912 50.75l10.89 10.125L67 36.75" fill="none" stroke="#fff" stroke-width="6"/>
+  </svg>
+
+</div>
+</a>
+<script>
+    function delay5 (URL) {
+    setTimeout( function() { location.href = "{% url 'res5' %}" },5000 );
+}
+</script>
+
+            </div>
+          <div class="container" onclick="this.classList.toggle('active')">
+  <span class="text">
+      ANOMALY
+  </span>
+
+  <svg class="fingerprint fingerprint-base" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+    <g class="fingerprint-out" fill="none" stroke-width="2" stroke-linecap="round">
+      <path
+            class="odd" d="m 25.117139,57.142857 c 0,0 -1.968558,-7.660465 -0.643619,-13.149003 1.324939,-5.488538 4.659682,-8.994751 4.659682,-8.994751" />
+      <path
+            class="odd" d="m 31.925369,31.477584 c 0,0 2.153609,-2.934998 9.074971,-5.105078 6.921362,-2.17008 11.799844,-0.618718 11.799844,-0.618718" />
+      <path
+            class="odd" d="m 57.131213,26.814448 c 0,0 5.127709,1.731228 9.899495,7.513009 4.771786,5.781781 4.772971,12.109204 4.772971,12.109204" />
+      <path
+            class="odd" d="m 72.334009,50.76769 0.09597,2.298098 -0.09597,2.386485" />
+      <path
+            class="even" d="m 27.849282,62.75 c 0,0 1.286086,-1.279223 1.25,-4.25 -0.03609,-2.970777 -1.606117,-7.675266 -0.625,-12.75 0.981117,-5.074734 4.5,-9.5 4.5,-9.5" />
+      <path
+            class="even" d="m 36.224282,33.625 c 0,0 8.821171,-7.174484 19.3125,-2.8125 10.491329,4.361984 11.870558,14.952665 11.870558,14.952665" />
+      <path
+            class="even" d="m 68.349282,49.75 c 0,0 0.500124,3.82939 0.5625,5.8125 0.06238,1.98311 -0.1875,5.9375 -0.1875,5.9375" />
+      <path
+            class="odd" d="m 31.099282,65.625 c 0,0 1.764703,-4.224042 2,-7.375 0.235297,-3.150958 -1.943873,-9.276886 0.426777,-15.441942 2.370649,-6.165056 8.073223,-7.933058 8.073223,-7.933058" />
+      <path
+            class="odd" d="m 45.849282,33.625 c 0,0 12.805566,-1.968622 17,9.9375 4.194434,11.906122 1.125,24.0625 1.125,24.0625" />
+      <path
+            class="even" d="m 59.099282,70.25 c 0,0 0.870577,-2.956221 1.1875,-4.5625 0.316923,-1.606279 0.5625,-5.0625 0.5625,-5.0625" />
+      <path
+            class="even" d="m 60.901059,56.286612 c 0,0 0.903689,-9.415996 -3.801777,-14.849112 -3.03125,-3.5 -7.329245,-4.723939 -11.867187,-3.8125 -5.523438,1.109375 -7.570313,5.75 -7.570313,5.75" />
+      <path
+            class="even" d="m 34.072577,68.846248 c 0,0 2.274231,-4.165782 2.839205,-9.033748 0.443558,-3.821814 -0.49394,-5.649939 -0.714206,-8.05386 -0.220265,-2.403922 0.21421,-4.63364 0.21421,-4.63364" />
+      <path
+            class="odd" d="m 37.774165,70.831845 c 0,0 2.692139,-6.147592 3.223034,-11.251208 0.530895,-5.103616 -2.18372,-7.95562 -0.153491,-13.647655 2.030229,-5.692035 8.108442,-4.538898 8.108442,-4.538898" />
+      <path
+            class="odd" d="m 54.391174,71.715729 c 0,0 2.359472,-5.427681 2.519068,-16.175068 0.159595,-10.747388 -4.375223,-12.993087 -4.375223,-12.993087" />
+      <path
+            class="even" d="m 49.474282,73.625 c 0,0 3.730297,-8.451831 3.577665,-16.493718 -0.152632,-8.041887 -0.364805,-11.869326 -4.765165,-11.756282 -4.400364,0.113044 -3.875,4.875 -3.875,4.875" />
+      <path
+            class="even" d="m 41.132922,72.334447 c 0,0 2.49775,-5.267079 3.181981,-8.883029 0.68423,-3.61595 0.353553,-9.413359 0.353553,-9.413359" />
+      <path
+            class="odd" d="m 45.161782,73.75 c 0,0 1.534894,-3.679847 2.40625,-6.53125 0.871356,-2.851403 1.28125,-7.15625 1.28125,-7.15625" />
+      <path
+            class="odd" d="m 48.801947,56.125 c 0,0 0.234502,-1.809418 0.109835,-3.375 -0.124667,-1.565582 -0.5625,-3.1875 -0.5625,-3.1875" />
+    </g>
+  </svg>
+
+  <svg class="fingerprint fingerprint-active" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+    <g class="fingerprint-out" fill="none" stroke-width="2" stroke-linecap="round">
+      <path
+            class="odd" d="m 25.117139,57.142857 c 0,0 -1.968558,-7.660465 -0.643619,-13.149003 1.324939,-5.488538 4.659682,-8.994751 4.659682,-8.994751" />
+      <path
+            class="odd" d="m 31.925369,31.477584 c 0,0 2.153609,-2.934998 9.074971,-5.105078 6.921362,-2.17008 11.799844,-0.618718 11.799844,-0.618718" />
+      <path
+            class="odd" d="m 57.131213,26.814448 c 0,0 5.127709,1.731228 9.899495,7.513009 4.771786,5.781781 4.772971,12.109204 4.772971,12.109204" />
+      <path
+            class="odd" d="m 72.334009,50.76769 0.09597,2.298098 -0.09597,2.386485" />
+      <path
+            class="even" d="m 27.849282,62.75 c 0,0 1.286086,-1.279223 1.25,-4.25 -0.03609,-2.970777 -1.606117,-7.675266 -0.625,-12.75 0.981117,-5.074734 4.5,-9.5 4.5,-9.5" />
+      <path
+            class="even" d="m 36.224282,33.625 c 0,0 8.821171,-7.174484 19.3125,-2.8125 10.491329,4.361984 11.870558,14.952665 11.870558,14.952665" />
+      <path
+            class="even" d="m 68.349282,49.75 c 0,0 0.500124,3.82939 0.5625,5.8125 0.06238,1.98311 -0.1875,5.9375 -0.1875,5.9375" />
+      <path
+            class="odd" d="m 31.099282,65.625 c 0,0 1.764703,-4.224042 2,-7.375 0.235297,-3.150958 -1.943873,-9.276886 0.426777,-15.441942 2.370649,-6.165056 8.073223,-7.933058 8.073223,-7.933058" />
+      <path
+            class="odd" d="m 45.849282,33.625 c 0,0 12.805566,-1.968622 17,9.9375 4.194434,11.906122 1.125,24.0625 1.125,24.0625" />
+      <path
+            class="even" d="m 59.099282,70.25 c 0,0 0.870577,-2.956221 1.1875,-4.5625 0.316923,-1.606279 0.5625,-5.0625 0.5625,-5.0625" />
+      <path
+            class="even" d="m 60.901059,56.286612 c 0,0 0.903689,-9.415996 -3.801777,-14.849112 -3.03125,-3.5 -7.329245,-4.723939 -11.867187,-3.8125 -5.523438,1.109375 -7.570313,5.75 -7.570313,5.75" />
+      <path
+            class="even" d="m 34.072577,68.846248 c 0,0 2.274231,-4.165782 2.839205,-9.033748 0.443558,-3.821814 -0.49394,-5.649939 -0.714206,-8.05386 -0.220265,-2.403922 0.21421,-4.63364 0.21421,-4.63364" />
+      <path
+            class="odd" d="m 37.774165,70.831845 c 0,0 2.692139,-6.147592 3.223034,-11.251208 0.530895,-5.103616 -2.18372,-7.95562 -0.153491,-13.647655 2.030229,-5.692035 8.108442,-4.538898 8.108442,-4.538898" />
+      <path
+            class="odd" d="m 54.391174,71.715729 c 0,0 2.359472,-5.427681 2.519068,-16.175068 0.159595,-10.747388 -4.375223,-12.993087 -4.375223,-12.993087" />
+      <path
+            class="even" d="m 49.474282,73.625 c 0,0 3.730297,-8.451831 3.577665,-16.493718 -0.152632,-8.041887 -0.364805,-11.869326 -4.765165,-11.756282 -4.400364,0.113044 -3.875,4.875 -3.875,4.875" />
+      <path
+            class="even" d="m 41.132922,72.334447 c 0,0 2.49775,-5.267079 3.181981,-8.883029 0.68423,-3.61595 0.353553,-9.413359 0.353553,-9.413359" />
+      <path
+            class="odd" d="m 45.161782,73.75 c 0,0 1.534894,-3.679847 2.40625,-6.53125 0.871356,-2.851403 1.28125,-7.15625 1.28125,-7.15625" />
+      <path
+            class="odd" d="m 48.801947,56.125 c 0,0 0.234502,-1.809418 0.109835,-3.375 -0.124667,-1.565582 -0.5625,-3.1875 -0.5625,-3.1875" />
+    </g>
+  </svg>
+ <a href="javascript:delay6('URL')">
+  <svg class="ok" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+      <path d="M34.912 50.75l10.89 10.125L67 36.75" fill="none" stroke="#fff" stroke-width="6"/>
+  </svg>
+
+</div>
+</a>
+<script>
+    function delay6 (URL) {
+    setTimeout( function() { location.href = "{% url 'res6' %}" },5000 );
+}
+</script>
+
+        </div>
+    </div>
+</img>
+<footer>
+   <div class="bottom">
+     <p style="font-size:15px"> &#169;2021 Developed with &hearts; by Arvinth, Krishna Deepthi & Meghana</p>
+   </div>
+ </footer>
+<script>
+  const toggleBtn = document.querySelector('.toggle-btn');
+const ul = document.querySelector('nav .link');
+const header = document.querySelector('.header');
+
+toggleBtn.addEventListener('click', () => {
+    toggleBtn.classList.toggle('active');
+    ul.classList.toggle('active');
+    header.classList.toggle('skew');
+})
+</script>
+
+</body>
+</html>

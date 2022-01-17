@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+body {
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+    font-family: sans-serif;
+    font-weight: 600;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+html,
+body {
+	height: 100%;
+}
+
+body {
+	font-family: sans-serif;
+	font-weight: 100;
+    margin: 0;
+}
+footer{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #111;
+}
+footer .bottom{
+  width: 100%;
+  text-align: center;
+  color: #d9d9d9;
+  padding: 0 1px 5px 0;
+}
+footer .bottom a{
+  color: #eb2f06;
+}
+</style>
+<body>
+    <br>
+    <br>
+    <center><img style="padding-top: 20px;" src="data:img/png;base64,{{chart|safe}}"/></center>
+<footer>
+   <div class="bottom">
+     <b><p style="font-size:15px"> &#169;2021 Developed with &hearts; by Arvinth, Krishna Deepthi & Meghana</p></b>
+   </div>
+ </footer>
+
+</body>
+</html>
